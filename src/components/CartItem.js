@@ -5,7 +5,7 @@ import { MdOutlineDeleteOutline } from "react-icons/md";
 import { currencyFormate } from "../utils/currencyFormate";
 import { CartContext } from "../context/CartContext";
 const CartItem = ({ item }) => {
-    const { removerCart, incrementCart } = useContext(CartContext)
+    const { removerCart, incrementCart, discreateCart } = useContext(CartContext)
   return (
     <div className="flex items-center justify-between border-b pb-2 gap-5">
       <div className="flex items-center gap-5">
@@ -19,7 +19,7 @@ const CartItem = ({ item }) => {
         <div className="flex gap-5">
           <div className="product-price">{currencyFormate(item.price)}</div>
           <div className="flex items-center gap-2">
-          <button>
+          <button onClick={() => discreateCart(item.id)}>
               <AiOutlineMinus />
             </button>
             <span>{item.amount}</span>

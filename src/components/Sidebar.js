@@ -11,7 +11,7 @@ const Sidebar = () => {
     <div
       className={`${
         isOpen ? "right-0" : "-right-full"
-      } bg-white fixed top-0 w-full h-full md:w-[35vw] xl:max-w-[25vw] shadow-xl transition-all duration-300 px-4 z-20`}
+      } bg-white fixed top-0 w-full h-full lg:h-[60rem] overflow-x-hidden md:w-[35vw] xl:max-w-[25vw] shadow-xl transition-all duration-300 px-4 z-20`}
     >
       <div className="flex items-center justify-between border-b py-5 mb-5">
         <span className="uppercase">shopping bag {cart.length}</span>
@@ -28,7 +28,8 @@ const Sidebar = () => {
         {cart.length > 0 && (
           <>
             <span>
-              Total Price: <span>{currencyFormate(totalAmount)}</span>
+              Total Price:{" "}
+              <span>{currencyFormate(parseFloat(totalAmount).toFixed(2))}</span>
             </span>
             <button onClick={clearCart}>Clear Cart</button>
           </>

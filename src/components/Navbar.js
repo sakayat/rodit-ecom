@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
 import { SidebarContext } from "../context/SidebarContext";
 import { BiShoppingBag } from "react-icons/bi";
+import { CartContext } from "../context/CartContext";
 const Navbar = () => {
   const { isOpen, setIsOpen } = useContext(SidebarContext);
+  const { totalItem } = useContext(CartContext);
   return (
-    <div className="header bg-[#d39b59] text-white py-8">
+    <div className="header text-white bg-cyan-700 py-5">
       <nav className="container mx-auto flex justify-between">
         <div className="logo">rodite</div>
         <button
@@ -12,7 +14,12 @@ const Navbar = () => {
             setIsOpen(!isOpen);
           }}
         >
-          <span className="text-2xl"><BiShoppingBag /></span>
+          <span className="relative">
+            <BiShoppingBag className="text-3xl" />
+            <span className="text-sm absolute top-0 -right-1 bg-red-400 w-5 h-5 flex items-center justify-center rounded-full">
+              {totalItem}
+            </span>
+          </span>
         </button>
       </nav>
     </div>

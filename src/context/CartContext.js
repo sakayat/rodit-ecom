@@ -33,18 +33,42 @@ export const CartProvider = ({ children }) => {
     setCart([]);
   };
   const incrementCart = (id) => {
-    const item = cart.find((item) => item.id === id);
-    addToCart(item, id);
+    const cartItem = cart.find((item) => item.id === id);
+    addToCart(cartItem, id);
   };
-
+  const discreateCart = (id) => {
+    const cartItem = cart.find((item) => {
+      return item.id === id;
+    });
+    if (cartItem) {
+      const newCart = cart.map((item) =>
+        item.id === id ? { ...item, amount: item.amount - 1 } : item
+      );
+      setCart(newCart);
+    }
+    if (cartItem.amount < 2) {
+      removerCart(id);
+    }
+  };
   const totalAmount = cart.reduce((acc, item) => {
-    return acc + item.amount * item.price;
+    return acc + item.amount * item.price
   }, 0);
-
+  const totalItem = cart.reduce((acc,item) => {
+    return acc + item.amount;
+  },0)
 
   return (
     <CartContext.Provider
-      value={{ addToCart, removerCart, clearCart, incrementCart, totalAmount, cart }}
+      value={{
+        addToCart,
+        removerCart,
+        clearCart,
+        incrementCart,
+        discreateCart,
+        totalAmount,
+        totalItem,
+        cart,
+      }}
     >
       {children}
     </CartContext.Provider>

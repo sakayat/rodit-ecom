@@ -6,4 +6,5 @@
 
 body{
   font-family: 'Phudu', cursive;
+  overflow-x: hidden;
 }
